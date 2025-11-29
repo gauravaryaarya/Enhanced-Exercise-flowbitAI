@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- LEAFLET OVERRIDES --- */
+
+/* 1. Hide the standard zoom control buttons */
+.leaflet-control-zoom {
+  display: none;
+}
+
+/* 2. HIDE THE DEFAULT DRAW TOOLBAR 
+   We hide it visually so the user only sees your beautiful CustomDrawControl,
+   but we keep it in the DOM so our custom buttons can 'click' it.
+*/
+.leaflet-draw-toolbar {
+  visibility: hidden;
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+}
+
+/* 3. Customize the Drawing Cursor (Optional but nice) */
+.leaflet-container.leaflet-clickable,
+.leaflet-container.leaflet-grab {
+  cursor: crosshair;
+}
+
+/* --- LEAFLET OVERRIDES --- */
+
+.leaflet-control-zoom {
+  display: none;
+}
+
+/* FIX: Use opacity instead of visibility. 
+   This ensures the elements exist for our custom control to 'click' them. */
+.leaflet-draw-toolbar {
+  opacity: 0;
+  pointer-events: none; /* User can't click the invisible box */
+  position: absolute;
+  /* Keep it somewhat on screen so the click event registers in the viewport */
+  top: 0; 
+  left: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Ensure our Custom Control sits ON TOP of everything */
+.custom-draw-control {
+  z-index: 2000 !important;
+}
