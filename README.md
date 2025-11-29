@@ -15,18 +15,17 @@ npm install
 
 # 2. Start the development server
 npm run dev
+
 The application will be available at http://localhost:5173.
 
 Running Tests
 This project uses Playwright for End-to-End (E2E) testing to ensure the map and UI interactions work as expected.
-
-Bash
-
 # Install Playwright browsers (first time only)
 npx playwright install
 
 # Run the test suite
 npx playwright test
+
 🛠 Tech Stack
 Core: React, TypeScript, Vite
 
