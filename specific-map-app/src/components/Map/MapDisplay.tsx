@@ -51,8 +51,8 @@ const MapDisplay: React.FC<MapDisplayProps> = ({ searchCoords, onAreaCreated, on
 
         {/* 2. Hybrid Overlay (Roads on top of satellite) - Optional but looks like Figma */}
         <TileLayer 
-             url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lines/{z}/{x}/{y}{r}.png"
-             opacity={0.4}
+             url="https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png"
+              opacity={1}
         />
         
         {/* 3. The NRW WMS Layer (Required by task) */}
