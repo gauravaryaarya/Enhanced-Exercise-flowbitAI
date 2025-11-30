@@ -17,6 +17,7 @@ const CustomDrawControl = () => {
         onClick={() => triggerLeafletDraw('.leaflet-draw-draw-polyline')}
         className="p-2 rounded-xl hover:bg-[#FFF8F3] text-[#C0773E] transition-colors group relative"
         title="Draw Line"
+        aria-label="Draw Polygon Shape"
       >
         <Activity size={24} strokeWidth={1.5} />
       </button>
@@ -26,6 +27,7 @@ const CustomDrawControl = () => {
         onClick={() => triggerLeafletDraw('.leaflet-draw-draw-polygon')}
         className="p-2 rounded-xl hover:bg-[#FFF8F3] text-[#C0773E] transition-colors"
         title="Draw Shape"
+        aria-label="Draw Polygon Shape"
       >
         <Spline size={24} strokeWidth={1.5} />
       </button>
@@ -35,6 +37,7 @@ const CustomDrawControl = () => {
         onClick={() => triggerLeafletDraw('.leaflet-draw-draw-rectangle')}
         className="p-2 rounded-xl hover:bg-[#FFF8F3] text-[#C0773E] transition-colors"
         title="Draw Box"
+        aria-label="Draw Polygon Shape"
       >
         <SquareDashedBottom size={24} strokeWidth={1.5} />
       </button>
@@ -47,6 +50,7 @@ const CustomDrawControl = () => {
         onClick={() => triggerLeafletDraw('.leaflet-draw-edit-edit')}
         className="p-2 rounded-xl hover:bg-[#FFF8F3] text-[#C0773E] transition-colors"
         title="Edit Shapes"
+        aria-label="Draw Polygon Shape"
       >
         <MousePointer2 size={24} strokeWidth={1.5} />
       </button>
@@ -56,6 +60,7 @@ const CustomDrawControl = () => {
         onClick={() => triggerLeafletDraw('.leaflet-draw-edit-remove')}
         className="p-2 rounded-xl hover:bg-[#FFF8F3] text-[#C0773E] transition-colors"
         title="Delete Shapes"
+        aria-label="Draw Polygon Shape"
       >
         {/* Using a distinct icon for delete/select mode */}
         <Move size={24} strokeWidth={1.5} />

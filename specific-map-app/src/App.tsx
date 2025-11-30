@@ -6,6 +6,7 @@ import MapDisplay from './components/Map/MapDisplay';
 import L from 'leaflet';
 
 function App() {
+  const [showLabels, setShowLabels] = useState(true);
   const [searchCoords, setSearchCoords] = useState<[number, number] | null>(null);
   const [areas, setAreas] = useState<any[]>([]);
   const [viewMode, setViewMode] = useState<'search' | 'scope'>('search');
@@ -43,19 +44,16 @@ function App() {
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-black">
-      
-      {/* 1. MAP LAYER (Background - Full Screen) */}
       <div className="absolute inset-0 z-0">
         <MapDisplay 
             searchCoords={searchCoords}
             onAreaCreated={handleAreaCreated}
             onAreaDeleted={() => {}} 
             featureGroupRef={featureGroupRef}
+            showLabels={showLabels} // PASS DOWN
         />
       </div>
 
-      {/* 2. SIDEBAR LAYER (Floating Overlay on top) */}
-      {/* ADDED: 'w-full' and 'flex' to ensure consistent layout behavior */}
       <div className="absolute top-0 left-0 h-full w-full z-[1000] pointer-events-none flex">
         <Sidebar 
             onSearch={handleSearch} 
@@ -63,11 +61,11 @@ function App() {
             onDeleteArea={handleDeleteArea}
             onConfirm={() => setViewMode('scope')}
             viewMode={viewMode}
+            showLabels={showLabels}       // PASS DOWN
+            toggleLabels={() => setShowLabels(!showLabels)} // PASS DOWN
         />
       </div>
-
     </div>
   );
 }
-
 export default App;

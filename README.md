@@ -115,3 +115,43 @@ Persistence: AOIs are saved to LocalStorage and persist on page reload.
 Custom UI: Completely custom "White Pill" drawing toolbar matching the provided design.
 
 Advanced Layout: Implemented a semi-transparent sidebar overlaying the map using backdrop-filter.
+
+## 📊 Data Schema & API Documentation
+
+### 1. Client-Side Data Schema
+Since this is a client-side application, we utilize a simplified JSON schema to manage the Application State (`App.tsx`).
+
+**Area Object (AOI):**
+```json
+{
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [6.95, 50.93],
+        [6.96, 50.94],
+        [6.97, 50.93],
+        [6.95, 50.93]
+      ]
+    ]
+  }
+}
+
+External API Documentation
+A. Nominatim Geocoding API (OpenStreetMap) Used for converting city names into coordinates.
+
+Endpoint: GET https://nominatim.openstreetmap.org/search
+
+Parameters: q={query}, format=json
+
+B. NRW WMS Service (Geobasis) Used for fetching the aerial satellite imagery.
+
+Endpoint: https://www.wms.nrw.de/geobasis/wms_nw_dop
+
+Layer: nw_dop_rgb
+
+Version: 1.3.0
+
+Format: image/png

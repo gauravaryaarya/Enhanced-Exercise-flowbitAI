@@ -10,9 +10,20 @@ interface SidebarProps {
   onDeleteArea: (index: number) => void;
   onConfirm: () => void;
   viewMode: 'search' | 'scope';
+  showLabels: boolean;     // Defined here
+  toggleLabels: () => void; // Defined here
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ onSearch, areas, onDeleteArea, onConfirm, viewMode }) => {
+// FIX IS HERE: Added 'showLabels' and 'toggleLabels' to the destructuring below
+const Sidebar: React.FC<SidebarProps> = ({ 
+  onSearch, 
+  areas, 
+  onDeleteArea, 
+  onConfirm, 
+  viewMode, 
+  showLabels, 
+  toggleLabels 
+}) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -41,7 +52,6 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, areas, onDeleteArea, onConf
         
         {/* Logo Icon (Top) */}
         <div className="mb-2">
-            {/* Custom SVG for the arrow logo to match image */}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22 2L11 13" stroke="#E6B985" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M22 2L15 22L11 13L2 9L22 2Z" fill="#E6B985" stroke="#E6B985" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -69,7 +79,6 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, areas, onDeleteArea, onConf
         <div className="p-6 pb-4">
             <div className="flex items-center gap-3 text-slate-400 font-light mb-6 cursor-pointer hover:text-slate-600 transition">
                 <ChevronLeft size={22} strokeWidth={1} />
-                {/* Vertical Divider Line */}
                 <div className="h-6 w-[1px] bg-slate-200"></div>
                 <h1 className="text-xl text-[#C0773E] font-normal">
                     {viewMode === 'search' ? "Define Area of Interest" : "Define Project Scope"}
@@ -77,17 +86,27 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, areas, onDeleteArea, onConf
             </div>
         </div>
 
-        {/* --- CONTENT: SCOPE VIEW (The specific Screenshot look) --- */}
+        {/* --- CONTENT: SCOPE VIEW --- */}
         {viewMode === 'scope' && (
             <div className="flex-1 overflow-y-auto flex flex-col">
                 
-                {/* Accordion 1: Select Base Image */}
-                <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between text-slate-500 hover:bg-slate-50 cursor-pointer">
-                    <div className="flex items-center gap-2 font-light text-lg">
-                        <ChevronRight size={18} />
-                        <span>Select Base Image</span>
-                    </div>
-                    <Plus size={20} className="text-slate-400" />
+                {/* Accordion 1: Select Base Image (Layer Toggle) */}
+                <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between hover:bg-slate-50">
+                      <div className="flex items-center gap-2 text-slate-500 font-light text-lg">
+                          <ChevronRight size={18} />
+                          <span>Base Layers</span>
+                      </div>
+                      
+                      {/* Layer Toggle Switch */}
+                      <div className="flex items-center gap-2 pointer-events-auto" onClick={(e) => e.stopPropagation()}>
+                          <span className="text-xs text-slate-400 font-medium">Labels</span>
+                          <button 
+                              onClick={toggleLabels}
+                              className={`w-10 h-5 rounded-full p-1 transition-colors ${showLabels ? 'bg-[#C0773E]' : 'bg-slate-300'}`}
+                          >
+                              <div className={`bg-white w-3 h-3 rounded-full shadow-md transform transition-transform ${showLabels ? 'translate-x-5' : 'translate-x-0'}`} />
+                          </button>
+                      </div>
                 </div>
 
                 {/* Accordion 2: Define Area of Interest (ACTIVE) */}
@@ -140,7 +159,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, areas, onDeleteArea, onConf
             </div>
         )}
 
-        {/* --- CONTENT: SEARCH VIEW (Keep existing logic) --- */}
+        {/* --- CONTENT: SEARCH VIEW --- */}
         {viewMode === 'search' && (
              <div className="flex-1 px-6 py-2">
                 <p className="text-slate-500 text-sm mb-6 font-light">

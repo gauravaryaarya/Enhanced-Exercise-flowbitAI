@@ -31,9 +31,10 @@ interface MapDisplayProps {
     onAreaCreated: (layer: any) => void;
     onAreaDeleted: (layers: any) => void;
     featureGroupRef: React.MutableRefObject<L.FeatureGroup | null>;
+    showLabels: boolean;
 }
 
-const MapDisplay: React.FC<MapDisplayProps> = ({ searchCoords, onAreaCreated, onAreaDeleted, featureGroupRef }) => {
+const MapDisplay: React.FC<MapDisplayProps> = ({ searchCoords, onAreaCreated, onAreaDeleted, featureGroupRef, showLabels }) => {
   const position: [number, number] = [50.9375, 6.9603]; // Cologne (Köln) Coordinates as per screenshot
 
   return (
@@ -54,7 +55,12 @@ const MapDisplay: React.FC<MapDisplayProps> = ({ searchCoords, onAreaCreated, on
              url="https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png"
               opacity={1}
         />
-        
+        {showLabels && (
+            <TileLayer 
+                url="https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png"
+                opacity={1}
+            />
+        )}
         {/* 3. The NRW WMS Layer (Required by task) */}
         <WMSTileLayer
           url="https://www.wms.nrw.de/geobasis/wms_nw_dop"
