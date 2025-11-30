@@ -3,6 +3,8 @@
 A React-based single-page application (SPA) for visualizing satellite imagery and defining Areas of Interest (AOI). This project was engineered to match the provided Figma "Wizard" workflow, featuring a custom-built drawing interface and seamless WMS integration.
 [Figma](https://www.figma.com/proto/mtvRfVu94PTKLaOkbPmqOX/UI-Design---AOI-Creation?node-id=1-168&t=vH9qNnjR9K50tHSU-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A419)
 
+[Demo Video](https://drive.google.com/file/d/1DrJSofsV7CErB_uFVz6UQMPVfQBJ_FeV/view?usp=drivesdk)
+
 ##  Tech Stack
 
 * **Core:** React, TypeScript, Vite
