@@ -145,6 +145,14 @@ A. Nominatim Geocoding API (OpenStreetMap) Used for converting city names into c
 Endpoint: GET https://nominatim.openstreetmap.org/search
 
 Parameters: q={query}, format=json
+example responses :
+[
+  {
+    "lat": "50.9375",
+    "lon": "6.9603",
+    "display_name": "Cologne, North Rhine-Westphalia, Germany"
+  }
+]
 
 B. NRW WMS Service (Geobasis) Used for fetching the aerial satellite imagery.
 
@@ -155,3 +163,12 @@ Layer: nw_dop_rgb
 Version: 1.3.0
 
 Format: image/png
+
+
+I focused on Value-Based Testing rather than implementation details:
+
+Smoke Test: Verifies the Map and Sidebar mount correctly, ensuring the app isn't crashing on load.
+
+Custom UI Validation: Since I implemented a custom 'Headless' drawing bar, I added a specific test to ensure these custom buttons are visible and interactive, as the default Leaflet tests wouldn't catch if my custom UI was broken.
+
+User Flow: Verified the Search Input accepts text, ensuring the core 'Search' requirement is functional for the user."
